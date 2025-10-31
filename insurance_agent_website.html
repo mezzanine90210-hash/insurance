@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katarzyna Borsiak - Ubezpieczenia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #e3f2fd 0%, #ffffff 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1976d2 0%, #64b5f6 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(25, 118, 210, 0.3);
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header .subtitle {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .hero {
+            background: white;
+            padding: 50px;
+            margin: -30px auto 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            max-width: 1000px;
+        }
+
+        .hero h2 {
+            color: #1976d2;
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .hero p {
+            font-size: 1.1em;
+            text-align: center;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .offer-section {
+            background: white;
+            padding: 50px;
+            margin: 40px auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            max-width: 1000px;
+        }
+
+        .offer-section h2 {
+            color: #1976d2;
+            font-size: 2em;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .offer-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .offer-list li {
+            padding: 15px 0;
+            font-size: 1.1em;
+            color: #555;
+            border-bottom: 1px solid #e3f2fd;
+        }
+
+        .offer-list li:last-child {
+            border-bottom: none;
+        }
+
+        .cta-text {
+            text-align: center;
+            font-size: 1.1em;
+            margin-top: 30px;
+            color: #1976d2;
+            font-weight: bold;
+        }
+
+        .accordion {
+            max-width: 1000px;
+            margin: 40px auto;
+        }
+
+        .accordion-item {
+            background: white;
+            margin-bottom: 15px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .accordion-item:hover {
+            box-shadow: 0 6px 25px rgba(25, 118, 210, 0.2);
+        }
+
+        .accordion-header {
+            background: linear-gradient(135deg, #1976d2 0%, #64b5f6 100%);
+            color: white;
+            padding: 20px 25px;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            background: linear-gradient(135deg, #1565c0 0%, #42a5f5 100%);
+        }
+
+        .accordion-icon {
+            font-size: 1.5em;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            padding: 0 25px;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 1000px;
+            padding: 25px;
+        }
+
+        .accordion-content p,
+        .accordion-content ul {
+            color: #555;
+            line-height: 1.8;
+            font-size: 1.05em;
+        }
+
+        .accordion-content ul {
+            list-style: none;
+            margin: 15px 0;
+        }
+
+        .accordion-content li {
+            padding: 10px 0;
+            border-bottom: 1px solid #e3f2fd;
+        }
+
+        .accordion-content li:last-child {
+            border-bottom: none;
+        }
+
+        .contact-section {
+            background: linear-gradient(135deg, #1976d2 0%, #64b5f6 100%);
+            color: white;
+            padding: 60px 0;
+            margin-top: 60px;
+        }
+
+        .contact-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 40px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-5px);
+        }
+
+        .contact-item h3 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+            word-break: break-all;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            opacity: 0.8;
+        }
+
+        footer {
+            background: #0d47a1;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 0;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .hero, .offer-section {
+                padding: 30px 20px;
+            }
+
+            .accordion-header {
+                font-size: 1em;
+                padding: 15px 20px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Katarzyna Borsiak</h1>
+            <p class="subtitle">Ubezpieczenia Komunikacyjne, flotowe, majątkowe, życie</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="hero">
+            <h2>Najlepsza ochrona w najlepszej cenie!</h2>
+            <p>Szukasz ubezpieczenia idealnie dopasowanego do Twoich potrzeb?</p>
+            <p><strong>W 90% przypadków jesteśmy w stanie zaproponować Ci lepszą polisę niż ta, którą masz obecnie!</strong></p>
+            <p>Nasza agencja współpracuje z wieloma wiodącymi firmami ubezpieczeniowymi, dzięki czemu możemy znaleźć najkorzystniejsze warunki specjalnie dla Ciebie.</p>
+        </div>
+
+        <div class="offer-section">
+            <h2>Moja Oferta</h2>
+            <p style="font-size: 1.2em; color: #1976d2; font-weight: bold; margin-bottom: 20px;">Najlepsza ochrona w najlepszej cenie</p>
+            <p>Oferujemy szeroki zakres ubezpieczeń:</p>
+            <ul class="offer-list">
+                <li>✅ <strong>Komunikacyjne</strong> – dla Ciebie i Twojego auta</li>
+                <li>✅ <strong>Flotowe</strong> – dla firm i przedsiębiorców</li>
+                <li>✅ <strong>Majątkowe</strong> – ochrona Twojego domu i mienia</li>
+                <li>✅ <strong>Życiowe</strong> – bezpieczeństwo Twoje i Twoich bliskich</li>
+            </ul>
+            <p style="margin-top: 30px;">Działamy na rynku już od <strong>8 lat</strong> i doskonale wiemy, jakie ryzyka powinna obejmować Twoja polisa. Nie trać czasu na szukanie – zrobimy to za Ciebie, porównując oferty i wybierając najlepsze rozwiązanie.</p>
+            <p class="cta-text">📞 Skontaktuj się z nami i sprawdź, ile możesz zaoszczędzić!</p>
+            <p style="text-align: center; font-style: italic; margin-top: 15px; color: #1976d2;">Twoje bezpieczeństwo to nasza misja.</p>
+        </div>
+
+        <div class="accordion">
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Jaki zakres ubezpieczeń oferujemy?</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <ul>
+                        <li>✅ <strong>Komunikacyjne</strong> – dla Ciebie i Twojego auta</li>
+                        <li>✅ <strong>Flotowe</strong> – dla firm i przedsiębiorców</li>
+                        <li>✅ <strong>Majątkowe</strong> – ochrona Twojego domu i mienia</li>
+                        <li>✅ <strong>Życiowe</strong> – bezpieczeństwo Twoje i Twoich bliskich</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Co zyskasz wybierając nasze usługi?</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <ul>
+                        <li>✅ <strong>Niższa cena</strong> – nawet w 90% przypadków znajdziemy dla Ciebie lepszą ofertę<br>
+                        Porównujemy polisy od wielu firm, aby zapewnić Ci maksymalną ochronę w najlepszej cenie.</li>
+                        <li>✅ <strong>Indywidualne dopasowanie do Twoich potrzeb</strong><br>
+                        Nie sprzedajemy gotowych rozwiązań – każda polisa jest dostosowana do Twoich oczekiwań i sytuacji.</li>
+                        <li>✅ <strong>Szeroki wybór ubezpieczeń</strong><br>
+                        Oferujemy ubezpieczenia komunikacyjne, flotowe, majątkowe i życiowe – wszystko w jednym miejscu.</li>
+                        <li>✅ <strong>8 lat doświadczenia na rynku</strong><br>
+                        Dzięki naszej wiedzy dokładnie wiemy, jakie ryzyka powinna obejmować Twoja polisa.</li>
+                        <li>✅ <strong>Pełna obsługa i profesjonalne doradztwo</strong><br>
+                        Nie musisz się martwić formalnościami – zajmujemy się wszystkim od A do Z, oszczędzając Twój czas.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>W jaki sposób uzyskam ofertę / wycenę?</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p><strong>📞 Skontaktuj się z nami i sprawdź, ile możesz zaoszczędzić!</strong></p>
+                    <p style="font-style: italic; margin-top: 15px;">Twoje bezpieczeństwo to nasza misja.</p>
+                    <p style="margin-top: 20px;"><strong>Tel.</strong> 510-022-159</p>
+                    <p><strong>Email:</strong> katarzynaborsiak@gmail.com</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="contact-section">
+        <div class="container">
+            <div class="contact-content">
+                <h2>Skontaktuj się z nami</h2>
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <h3>Telefon</h3>
+                        <a href="tel:510022159">510-022-159</a>
+                    </div>
+                    <div class="contact-item">
+                        <h3>Email</h3>
+                        <a href="mailto:katarzynaborsiak@gmail.com">katarzynaborsiak@gmail.com</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Katarzyna Borsiak - Ubezpieczenia. Wszelkie prawa zastrzeżone.</p>
+        </div>
+    </footer>
+
+    <script>
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+        
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                document.querySelectorAll('.accordion-item').forEach(i => {
+                    i.classList.remove('active');
+                });
+                
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
